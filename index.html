@@ -3,28 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="#" />
+    <link rel="icon" href="/images/logo.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <link rel="stylesheet" href="style/style.css" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Homemade+Apple&family=Tangerine&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <title>My book library</title>
   </head>
 
-  <body>
-    <h1>Create your own book</h1>
-    <div class="inputs">
-      <input id="input-title" type="text" placeholder="Title" />
-      <input id="input-author" type="text" placeholder="Author" />
-      <input id="input-pages" type="text" placeholder="Number of pages" />
-    </div>
-    <div class="buttons">
-      <button type="button" onclick="addBookToLibrary()">NEW BOOK</button>
+  <body id="body-html">
+    <h1>My books library</h1>
+    <div class="add-book-info">
+      <img onclick="createBook()" src="/images/ink and fether.gif" alt="" />
+      <p>Click on to add your book</p>
     </div>
     <div id="books"></div>
-    <p id="polina">polina</p>
-    <script src="localstorage.js"></script>
+    <p id="signiture">Created by P.S &#10084;</p>
     <script src="script.js"></script>
   </body>
 </html>
