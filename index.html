@@ -40,6 +40,8 @@
   </head>
 
   <body id="body-html">
+    <div id="frames"></div>
+    <div id="frames-rigth"></div>
     <div id="cover"></div>
     <div id="my-library-title">
       <h1>My books library</h1>
@@ -47,6 +49,7 @@
     </div>
 
     <div class="add-book-info">
+      <div id="cover-ink"></div>
       <img
         id="ink-feather"
         onclick="createBook()"
@@ -62,12 +65,7 @@
       src="sounds/Harry Potter Theme Song.mp4"
       loop="loop"
       type="audio/mpeg"
-      <!--
-      preload="auto"
-      --
-    >
-      >
-    </audio>
+    ></audio>
 
     <script src="script.js"></script>
   </body>

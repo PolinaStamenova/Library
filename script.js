@@ -124,7 +124,6 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary){
 function deleteBook(deleteButton,card,body,myLibrary,cardContent){
     deleteButton.style.color = 'white';
     deleteButton.style.textShadow = '1px 1px 7px gold';
-    //--------------------------------------------------
     let fire = document.createElement('img');
     fire.setAttribute('src', 'images//smoke.gif');
     fire.classList.add('smoke');
@@ -215,24 +214,40 @@ else if (localStorage.getItem('myLibrary') !== null) {
         displayBook(myLibrary[i].bookTitle,myLibrary[i].bookAuthor,myLibrary[i].bookPages,myLibrary[i].id,myLibrary)
     }
 }
-function closeForm(){
-    document.getElementById("hello").classList.add("testing")
-}
+
 
 function createBook() {
+
+    document.getElementById('cover-ink').style.display = "block";
 
     document.getElementById('cover').style.display = 'block';
     let inputs = document.createElement('div');
     inputs.classList.add('inputs');
-    inputs.id = "hello"
+    inputs.classList.add('fade-in');
     document.body.appendChild(inputs);
+
+    let owl = document.createElement("img");
+    owl.setAttribute('src', 'images//own.gif');
+    owl.id = "owl-gif"
+    inputs.appendChild(owl);
 
     let displayNone = document.createElement('img');
     displayNone.setAttribute('src', 'images//xxx.png');
     displayNone.classList.add('display-none');
     displayNone.addEventListener("click", () => {
-        document.getElementById('cover').style.display = 'none';
-        inputs.remove();
+
+
+        inputs.classList.add('fade-out');
+       
+       
+
+        setTimeout(function(){
+            document.getElementById('cover-ink').style.display = "none";
+            document.getElementById('cover').style.display = 'none';
+            inputs.remove(); 
+        }, 6000);
+
+        
     })
     inputs.appendChild(displayNone)  
 
@@ -296,6 +311,7 @@ function createBook() {
     addBookButton.classList.add('add-book-button');
     addBookButton.addEventListener("click", () => {
         // document.getElementById("hello").classList.add("testing")
+        document.getElementById('cover-ink').style.display = "none";
         document.getElementById('cover').style.display = 'none';
         setTimeout(addBookToLibrary, 1000)
       });
