@@ -126,7 +126,7 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent){
     deleteButton.style.textShadow = '1px 1px 7px gold';
     //--------------------------------------------------
     let fire = document.createElement('img');
-    fire.setAttribute('src', '..//images//smoke.gif');
+    fire.setAttribute('src', 'images//smoke.gif');
     fire.classList.add('smoke');
     card.appendChild(fire);
     card.classList.add('burningBooksss');
@@ -141,7 +141,7 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent){
         card.style.backgroundImage = 'none';
         card.removeChild(cardContent);
         let smoke = document.createElement('img');
-        smoke.setAttribute('src', '..//images//smoke.gif');
+        smoke.setAttribute('src', 'images//smoke.gif');
         smoke.classList.add('smoke');
         card.appendChild(smoke);  
     }
@@ -228,7 +228,7 @@ function createBook() {
     document.body.appendChild(inputs);
 
     let displayNone = document.createElement('img');
-    displayNone.setAttribute('src', '..//images//xxx.png');
+    displayNone.setAttribute('src', 'images//xxx.png');
     displayNone.classList.add('display-none');
     displayNone.addEventListener("click", () => {
         document.getElementById('cover').style.display = 'none';
@@ -292,7 +292,7 @@ function createBook() {
 
 
     let addBookButton = document.createElement('img');
-    addBookButton.setAttribute('src', '..//images//wax stamp.png');
+    addBookButton.setAttribute('src', 'images//wax stamp.png');
     addBookButton.classList.add('add-book-button');
     addBookButton.addEventListener("click", () => {
         // document.getElementById("hello").classList.add("testing")
