@@ -280,7 +280,7 @@ h1 {
   }
 } */
 .fade-in {
-  animation: testingbook 7s forwards reverse;
+  animation: testingbook 4s forwards reverse;
 }
 @keyframes testingbook {
   0% {
@@ -293,7 +293,7 @@ h1 {
   }
 }
 .fade-out {
-  animation: fadeOutAnimation 7s forwards;
+  animation: fadeOutAnimation 4s forwards;
 }
 @keyframes fadeOutAnimation {
   0% {
@@ -311,7 +311,7 @@ h1 {
   top: 0;
   right: 5px;
   z-index: 14;
-  animation: owlanimation 7s;
+  animation: owlanimation 4s;
 }
 
 @keyframes owlanimation {

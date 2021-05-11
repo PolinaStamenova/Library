@@ -236,18 +236,13 @@ function createBook() {
     displayNone.classList.add('display-none');
     displayNone.addEventListener("click", () => {
 
-
         inputs.classList.add('fade-out');
        
-       
-
         setTimeout(function(){
             document.getElementById('cover-ink').style.display = "none";
             document.getElementById('cover').style.display = 'none';
             inputs.remove(); 
-        }, 6000);
-
-        
+        }, 3000);
     })
     inputs.appendChild(displayNone)  
 
@@ -310,12 +305,18 @@ function createBook() {
     addBookButton.setAttribute('src', 'images//wax stamp.png');
     addBookButton.classList.add('add-book-button');
     addBookButton.addEventListener("click", () => {
-        // document.getElementById("hello").classList.add("testing")
-        document.getElementById('cover-ink').style.display = "none";
-        document.getElementById('cover').style.display = 'none';
+        
+        inputs.classList.add('fade-out');
+       
+        setTimeout(function(){
+            document.getElementById('cover-ink').style.display = "none";
+            document.getElementById('cover').style.display = 'none';
+            inputs.remove(); 
+        }, 3000);
+
         setTimeout(addBookToLibrary, 1000)
-      });
-    //   addBookButton.addEventListener("click", closeForm)
+    });
+    
     wax.appendChild(addBookButton);
     let waxText = document.createElement('p');
     waxText.textContent = 'Click to add the book to the library!';
