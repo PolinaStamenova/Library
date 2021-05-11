@@ -1,3 +1,7 @@
+window.onload=function(){
+    document.getElementById("audio-sound").play();
+  }
+
 let body = document.getElementById('books');
 let myLibrary = [];
 
@@ -112,24 +116,40 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary){
     deleteButton.setAttribute('id', `delete-${randomIdNum}`);
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener("click", () => {
-        deleteBook(deleteButton,card,body,myLibrary)
+        deleteBook(deleteButton,card,body,myLibrary,cardContent)
     })
     settings.appendChild(deleteButton);
 }
 
-function deleteBook(deleteButton,card,body,myLibrary){
+function deleteBook(deleteButton,card,body,myLibrary,cardContent){
     deleteButton.style.color = 'white';
     deleteButton.style.textShadow = '1px 1px 7px gold';
     //--------------------------------------------------
     let fire = document.createElement('img');
-    fire.setAttribute('src', '..//images//fire.gif');
-    fire.classList.add('fire');
+    fire.setAttribute('src', '..//images//smoke.gif');
+    fire.classList.add('smoke');
     card.appendChild(fire);
     card.classList.add('burningBooksss');
-    card.setAttribute("backgroundImage", "../image/smoke.gif")
+
+    time ()
+    
+    function time (){
+        setTimeout(smoke, 3000);
+    }
+    function smoke() {
+        card.classList.remove('burningBooksss');
+        card.style.backgroundImage = 'none';
+        card.removeChild(cardContent);
+        let smoke = document.createElement('img');
+        smoke.setAttribute('src', '..//images//smoke.gif');
+        smoke.classList.add('smoke');
+        card.appendChild(smoke);  
+    }
+    
+
     timerDelete();
     function timerDelete() {
-        setTimeout(deteleItem, 3000);
+        setTimeout(deteleItem, 7000);
     }
     function deteleItem() {
 
@@ -195,18 +215,23 @@ else if (localStorage.getItem('myLibrary') !== null) {
         displayBook(myLibrary[i].bookTitle,myLibrary[i].bookAuthor,myLibrary[i].bookPages,myLibrary[i].id,myLibrary)
     }
 }
-
+function closeForm(){
+    document.getElementById("hello").classList.add("testing")
+}
 
 function createBook() {
-  
+
+    document.getElementById('cover').style.display = 'block';
     let inputs = document.createElement('div');
     inputs.classList.add('inputs');
+    inputs.id = "hello"
     document.body.appendChild(inputs);
 
     let displayNone = document.createElement('img');
     displayNone.setAttribute('src', '..//images//xxx.png');
     displayNone.classList.add('display-none');
     displayNone.addEventListener("click", () => {
+        document.getElementById('cover').style.display = 'none';
         inputs.remove();
     })
     inputs.appendChild(displayNone)  
@@ -258,7 +283,9 @@ function createBook() {
         onFocusOut(inputPagesText);
     })
     
-    
+    document.getElementById("ink-feather").addEventListener("click",()=>{
+        document.getElementById("hello").classList.add("othertesting")
+    })
     let wax = document.createElement('div');
     wax.classList.add('wax');
     inputsContetn.appendChild(wax)
@@ -268,24 +295,16 @@ function createBook() {
     addBookButton.setAttribute('src', '..//images//wax stamp.png');
     addBookButton.classList.add('add-book-button');
     addBookButton.addEventListener("click", () => {
-        addBookToLibrary()
+        // document.getElementById("hello").classList.add("testing")
+        document.getElementById('cover').style.display = 'none';
+        setTimeout(addBookToLibrary, 1000)
       });
+    //   addBookButton.addEventListener("click", closeForm)
     wax.appendChild(addBookButton);
     let waxText = document.createElement('p');
     waxText.textContent = 'Click to add the book to the library!';
     wax.appendChild(waxText);
 }
-
-
-// <!-- <div class="inputs">
-//       <input id="input-title" type="text" placeholder="Title" />
-//       <input id="input-author" type="text" placeholder="Author" />
-//       <input id="input-pages" type="text" placeholder="Number of pages" />
-//     </div>
-//     <div class="buttons">
-//       <button type="button" onclick="addBookToLibrary()">NEW BOOK</button>
-//     </div> -->
-
 
 function onFocus(text) {
     text.style.color = 'white';
@@ -296,7 +315,3 @@ function onFocusOut(textOut){
     textOut.style.color = '#000';
     textOut.style.textShadow = 'none';
 }
-
-// function displayNone() {
-//     document.getElementsByClassName('inputs').style.display = 'none';
-// }

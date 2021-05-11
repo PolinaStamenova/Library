@@ -25,18 +25,50 @@
       rel="stylesheet"
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 
     <title>My book library</title>
   </head>
 
   <body id="body-html">
-    <h1>My books library</h1>
+    <div id="cover"></div>
+    <div id="my-library-title">
+      <h1>My books library</h1>
+      <img src="/images/paperscroll.png" alt="Paper Scroll" />
+    </div>
+
     <div class="add-book-info">
-      <img onclick="createBook()" src="/images/ink and fether.gif" alt="" />
+      <img
+        id="ink-feather"
+        onclick="createBook()"
+        src="/images/ink and fether.gif"
+        alt=""
+      />
       <p>Click on to add your book</p>
     </div>
     <div id="books"></div>
     <p id="signiture">Created by P.S &#10084;</p>
+    <audio
+      id="audio-sound"
+      src="/sounds/Harry Potter Theme Song.mp4"
+      loop="loop"
+      type="audio/mpeg"
+      <!--
+      preload="auto"
+      --
+    >
+      >
+    </audio>
+
     <script src="script.js"></script>
   </body>
 </html>

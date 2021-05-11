@@ -10,12 +10,35 @@ body {
   background-color: rgb(12, 0, 0);
   position: relative;
 }
-h1 {
-  margin-top: 1rem;
+#cover {
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.568);
+  position: absolute;
+  z-index: 20;
+  display: none;
+}
+#my-library-title {
   text-align: center;
-  color: rgb(202, 195, 132);
-  font-family: "Great Vibes", cursive;
+}
+#my-library-title img {
+  position: relative;
+}
+h1 {
+  margin-top: 2rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.747);
+  /* color: rgba(0, 0, 0, 0.74); */
+  font-family: "Dancing Script", cursive;
+  /* font-family: "Delius Swash Caps", cursive; */
   font-size: 50px;
+  filter: drop-shadow(1rem 1rem 0.1rem rgba(24, 23, 21, 0.37));
+  position: absolute;
+  white-space: nowrap;
+  width: 30%;
+  z-index: 9;
+  top: 5rem;
+  left: 35%;
 }
 .add-book-info {
   text-align: center;
@@ -38,7 +61,7 @@ h1 {
   flex-wrap: wrap;
   grid-gap: 3rem;
   margin-top: 2rem;
-  margin-left: 4rem;
+  margin-left: 5rem;
 }
 .card {
   background-image: url(../images/book.jpg);
@@ -46,11 +69,14 @@ h1 {
   background-size: cover;
   word-wrap: break-word;
   background-position: center;
-  width: 300px;
-  min-height: 400px;
+  width: 400px;
+  min-height: 500px;
   color: rgb(202, 195, 132);
   filter: drop-shadow(0.5rem 0.5rem 0.5rem rgb(202, 195, 132));
   position: relative;
+}
+.invisibleBook {
+  visibility: hidden;
 }
 #cardContent {
   padding-top: 3rem;
@@ -59,16 +85,17 @@ h1 {
   text-align: center;
 }
 .title-style {
-  font-size: 20px;
-  margin-top: 3rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  font-size: 24px;
+  margin-top: 4rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  font-family: "Delius Swash Caps", cursive;
 }
 .description {
   position: absolute;
   width: 60%;
-  left: 4rem;
-  bottom: 9rem;
+  left: 5.4rem;
+  bottom: 12rem;
   z-index: 2;
   margin: 0;
 }
@@ -78,8 +105,9 @@ h1 {
   word-wrap: break-word;
   gap: 0.4rem;
   margin: 0;
-  font-family: "Great Vibes", cursive;
-  font-size: 20px;
+  font-family: "Dancing Script", cursive;
+  /* font-family: "Great Vibes", cursive; */
+  font-size: 26px;
 }
 .author-content p,
 .pages-content p {
@@ -96,10 +124,11 @@ h1 {
 .update-button,
 .delete-button {
   padding-top: 0.8rem;
-  font-size: 14px;
-  line-height: 0.6rem;
+  font-size: 18px;
+  line-height: 1.8rem;
   font-family: "Great Vibes", cursive;
   font-family: "Homemade Apple", cursive;
+  color: rgba(202, 195, 132, 0.466);
 }
 
 #signiture {
@@ -122,7 +151,7 @@ h1 {
   position: absolute;
   top: 11rem;
   left: 34%;
-  z-index: 6;
+  z-index: 22;
 }
 .input-content {
   padding: 8rem 16rem 10rem 10rem;
@@ -175,16 +204,17 @@ h1 {
 .display-none:hover {
   filter: blur(3px);
 }
-
-.fire {
+.smoke {
+  opacity: 1;
   position: absolute;
+  z-index: 10;
   bottom: 0;
-  width: 300px;
-  height: 200px;
+  width: 500px;
+  height: 600px;
 }
 
 .burningBooksss {
-  animation: burningBook 5s infinite;
+  animation: burningBook 4s;
 }
 
 @keyframes burningBook {
@@ -197,4 +227,36 @@ h1 {
   100% {
     opacity: 0;
   }
+}
+
+.appearingBooksss {
+  animation: appearingBook 3s;
+}
+
+@keyframes appearingBook {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.testing {
+  animation: testingbook 1s forwards;
+}
+.othertesting {
+  animation: testingbook 2s forwards reverse;
+}
+
+@keyframes testingbook {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0) rotate(400deg);
+  }
+}
 }
