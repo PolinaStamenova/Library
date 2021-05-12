@@ -164,6 +164,14 @@ h1 {
   font-family: "Homemade Apple", cursive;
   color: rgba(202, 195, 132, 0.466);
   cursor: url(../images/magicWandCursor.png), auto;
+  position: relative;
+}
+.cover-settings {
+  width: 400px;
+  height: 400px;
+  background-color: #000;
+  position: absolute;
+  z-index: 30;
 }
 
 #signiture {

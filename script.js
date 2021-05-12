@@ -107,7 +107,7 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary){
     updateButton.setAttribute('id', `update-${randomIdNum}`);
     updateButton.textContent = 'Update';
     updateButton.addEventListener("click", () => {
-        updateBook(updateButton,randomIdNum,editButton)
+        updateBook(updateButton,randomIdNum,title,author,pages)
     })
     settings.appendChild(updateButton);
 
@@ -166,16 +166,19 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent){
 }
 function editBook(randomIdNum,editButton,updateButton){
     
+    
     editButton.style.color = 'white';
     editButton.style.textShadow = '1px 1px 7px gold';
+    
     timer();
     function timer() {
-        setTimeout(changeColor, 10000);
+        setTimeout(changeColor, 2000);
     }
     function changeColor() {
+        editButton.classList.add('edit-button')
         updateButton.style.color = 'white';
         updateButton.style.textShadow = '1px 1px 7px gold';
-        editButton.style.color = 'rgb(202, 195, 132)';
+        editButton.style.color = 'rgba(202, 195, 132, 0.466)';
         editButton.style.textShadow = 'none';
     }
     
@@ -187,12 +190,15 @@ function editBook(randomIdNum,editButton,updateButton){
     changedPages.contentEditable = true;
 }
 
-function updateBook(updateButton,randomIdNum,editButton){ 
-    editButton.style.color = 'rgb(202, 195, 132)';
-    editButton.style.textShadow = 'none';
-    updateButton.style.color = 'rgb(202, 195, 132)';
+function updateBook(updateButton,randomIdNum,title,author,pages){ 
+   
+    updateButton.style.color = 'rgba(202, 195, 132, 0.466)';
     updateButton.style.textShadow = 'none';
 
+    title.contentEditable = false;
+    author.contentEditable = false;
+    pages.contentEditable = false;
+    
     for (let k=0; k < myLibrary.length; k++){
         if (`update-${myLibrary[k].id}` == updateButton.id){
             myLibrary[k].bookTitle = document.getElementById(`h2-${randomIdNum}`).innerHTML;
@@ -221,10 +227,13 @@ function createBook() {
     document.getElementById('cover-ink').style.display = "block";
 
     document.getElementById('cover').style.display = 'block';
-    let inputs = document.createElement('div');
+    let inputs = document.createElement('form');
     inputs.classList.add('inputs');
     inputs.classList.add('fade-in');
+    inputs.setAttribute("action", "/");
+    inputs.setAttribute("method", "GET");
     document.body.appendChild(inputs);
+    
 
     let owl = document.createElement("img");
     owl.setAttribute('src', 'images//own.gif');
@@ -301,20 +310,35 @@ function createBook() {
     inputsContetn.appendChild(wax)
 
 
-    let addBookButton = document.createElement('img');
+    let addBookButton = document.createElement('button');
+    
     addBookButton.setAttribute('src', 'images//wax stamp.png');
+    addBookButton.setAttribute("type", "submit")
     addBookButton.classList.add('add-book-button');
+    inputs.appendChild(addBookButton);
     addBookButton.addEventListener("click", () => {
         
-        inputs.classList.add('fade-out');
-       
-        setTimeout(function(){
-            document.getElementById('cover-ink').style.display = "none";
-            document.getElementById('cover').style.display = 'none';
-            inputs.remove(); 
-        }, 3000);
-
-        setTimeout(addBookToLibrary, 1000)
+        inputs.addEventListener('submit', (e) => {
+            if (inputTitle.value === '' || inputTitle.value == null ||
+                inputAuthor.value === '' || inputAuthor.value == null ||
+                inputPages.value === '' || inputPages.value == null){
+                e.preventDefault();
+                inputTitle.placeholder = "Title is requared!";
+                inputAuthor.placeholder = "Authoris requared!";
+                inputPages.placeholder = "Pages are requared!";
+            }
+            else {
+                e.preventDefault();
+                inputs.classList.add('fade-out');  
+                setTimeout(function(){
+                document.getElementById('cover-ink').style.display = "none";
+                document.getElementById('cover').style.display = 'none';
+                inputs.remove(); 
+                }, 3000);
+                setTimeout(addBookToLibrary, 1000)
+               
+            }   
+        })
     });
     
     wax.appendChild(addBookButton);
