@@ -95,6 +95,7 @@ h1 {
   margin-top: 2rem;
   margin-left: 5rem;
 }
+
 .card {
   background-image: url(../images/book.jpg);
   background-repeat: no-repeat;
@@ -122,7 +123,7 @@ h1 {
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   font-family: "Delius Swash Caps", cursive;
-  cursor: url(../images/magicWandCursor.png), auto;
+  cursor: url(../images/wanddddd.jpg), auto;
 }
 .description {
   position: absolute;
@@ -139,13 +140,12 @@ h1 {
   gap: 0.4rem;
   margin: 0;
   font-family: "Dancing Script", cursive;
-  /* font-family: "Great Vibes", cursive; */
   font-size: 26px;
+  cursor: url(../images/wanddddd.jpg), auto;
 }
 .author-content p,
 .pages-content p {
   margin: 0;
-  cursor: url(../images/magicWandCursor.png), auto;
 }
 
 .settings {
@@ -163,7 +163,7 @@ h1 {
   font-family: "Great Vibes", cursive;
   font-family: "Homemade Apple", cursive;
   color: rgba(202, 195, 132, 0.466);
-  cursor: url(../images/magicWandCursor.png), auto;
+  cursor: url(../images/wanddddd.jpg), auto;
   position: relative;
 }
 .cover-settings {
@@ -172,6 +172,34 @@ h1 {
   background-color: #000;
   position: absolute;
   z-index: 30;
+}
+.notRead {
+  width: 40%;
+  position: absolute;
+  z-index: 12;
+  bottom: 0rem;
+  left: 60%;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Great Vibes", cursive;
+  font-family: "Homemade Apple", cursive;
+  color: rgb(3, 3, 3);
+  cursor: url(../images/wanddddd.jpg), auto;
+}
+.hat-style {
+  position: absolute;
+  z-index: 11;
+  max-width: 400px;
+  max-height: 400px;
+  top: 10%;
+  opacity: 0.7;
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem rgb(202, 195, 132));
+}
+.hat-show {
+  display: none;
+}
+.hat-style-display {
+  display: block;
 }
 
 #signiture {
@@ -187,7 +215,6 @@ h1 {
 .inputs {
   width: auto;
   height: auto;
-  /* opacity: 0.4; */
   background-image: url(../images/burned\ paper.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -208,9 +235,7 @@ h1 {
   font-family: "Great Vibes", cursive;
   font-family: "Homemade Apple", cursive;
 }
-#input-title,
-#input-author,
-#input-pages {
+.inputs-style {
   font-size: 30px;
   outline: none;
   text-decoration: none;

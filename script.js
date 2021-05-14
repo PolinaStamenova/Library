@@ -4,17 +4,18 @@ window.onload=function(){
 
 let body = document.getElementById('books');
 let myLibrary = [];
-
+let status = false
 //------ Create elements in HTML -----
 
 
 
-function Book(bookTitle, bookAuthor, bookPages, randomIdNum){
+function Book(bookTitle, bookAuthor, bookPages, randomIdNum, status=false){
    
     this.bookTitle = bookTitle
     this.bookAuthor = bookAuthor
     this.bookPages = bookPages
     this.id = randomIdNum
+    this.status = status
 }
 
 function addBookToLibrary(){
@@ -23,12 +24,19 @@ function addBookToLibrary(){
     let bookTitle = document.getElementById('input-title').value;
     let bookAuthor = document.getElementById('input-author').value;
     let bookPages = document.getElementById('input-pages').value;
-    
-    myLibrary.push(new Book(bookTitle, bookAuthor, bookPages, randomIdNum))
-    displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary);
+    let status = false;
+    if (bookTitle ===  '' || bookTitle == null ||
+        bookAuthor ===  '' || bookAuthor == null ||
+        bookPages ===  '' || bookPages == null){
+        return
+    }
+    else {
+      myLibrary.push(new Book(bookTitle, bookAuthor, bookPages, randomIdNum, status))
+    displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary);
     
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
-    console.log(localStorage);
+    }
+    
 }
 
 //The function generate a random number, used for id-name
@@ -40,7 +48,7 @@ function randomId() {
     ).toString(36);
 }
 //The function generate elements in HTML
-function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary){
+function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary){
     
     let card = document.createElement('div');
     card.setAttribute('class', 'card');
@@ -98,7 +106,8 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary){
     editButton.setAttribute('id', `edit-${randomIdNum}`);
     editButton.textContent = 'Edit';
     editButton.addEventListener("click", () => {
-        editBook(randomIdNum,editButton,updateButton)
+        editBook(randomIdNum,editButton,updateButton);
+        
     })
     settings.appendChild(editButton);
 
@@ -110,18 +119,80 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,myLibrary){
         updateBook(updateButton,randomIdNum,title,author,pages)
     })
     settings.appendChild(updateButton);
+//TOGGleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    let readButton = document.createElement("p");
+    readButton.textContent = 'Not read';
+    readButton.classList.add("notRead");
+    readButton.id = `status-${randomIdNum}`;
+    card.appendChild(readButton);
+
+   
+    let hatOne = document.createElement('img');
+    hatOne.setAttribute('src', "images/hat.png");
+    hatOne.classList.add("hat-style");
+    if(status == false){
+        hatOne.classList.add("hat-show");
+        readButton.textContent = 'Not read';
+        
+    }
+    else if (status == true) {
+        readButton.textContent = 'Read';
+        card.style.opacity = '0.5';
+    } 
+    card.appendChild(hatOne);
+    
+    
+    function checkPressed() { 
+        if (status == false){
+            status = true;
+            readButton.textContent = 'Read';
+            card.style.opacity = '0.5';
+            for (let k=0; k < myLibrary.length; k++){
+                if (`status-${myLibrary[k].id}` == readButton.id){
+                    myLibrary[k].status = status
+                    console.log(myLibrary[k]);
+                    localStorage.clear();
+                    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+                }}  
+        }
+        else {
+            readButton.textContent = 'Not read';
+            card.style.opacity = '1';
+            status = false
+            for (let n=0; n < myLibrary.length; n++){
+                if (`status-${myLibrary[n].id}` == readButton.id){
+                    myLibrary[n].status = status
+                    localStorage.clear();
+                    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+                    console.log(myLibrary[n]);
+                }}  
+        }
+        // localStorage.clear();
+        // localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+        
+        
+    }
+    readButton.addEventListener('click', () => {
+        checkPressed();
+        hatOne.classList.toggle("hat-show")
+        
+    })
+    
 
     let deleteButton = document.createElement('p');
     deleteButton.classList.add('delete-button');
     deleteButton.setAttribute('id', `delete-${randomIdNum}`);
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener("click", () => {
-        deleteBook(deleteButton,card,body,myLibrary,cardContent)
+        deleteBook(deleteButton,card,body,myLibrary,cardContent,hatOne,readButton)
     })
     settings.appendChild(deleteButton);
+
+    
+
 }
 
-function deleteBook(deleteButton,card,body,myLibrary,cardContent){
+function deleteBook(deleteButton,card,body,myLibrary,cardContent,hatOne,readButton){
     deleteButton.style.color = 'white';
     deleteButton.style.textShadow = '1px 1px 7px gold';
     let fire = document.createElement('img');
@@ -139,6 +210,9 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent){
         card.classList.remove('burningBooksss');
         card.style.backgroundImage = 'none';
         card.removeChild(cardContent);
+
+        hatOne.style.display = 'none';
+        readButton.style.display = "none";
         let smoke = document.createElement('img');
         smoke.setAttribute('src', 'images//smoke.gif');
         smoke.classList.add('smoke');
@@ -157,7 +231,7 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent){
         for (let k=0; k < myLibrary.length; k++){
             if (`delete-${myLibrary[k].id}` == deleteButton.id){
                 myLibrary.splice(k,1)
-                console.log(myLibrary);
+                
             }
         }
         localStorage.clear();
@@ -204,7 +278,6 @@ function updateBook(updateButton,randomIdNum,title,author,pages){
             myLibrary[k].bookTitle = document.getElementById(`h2-${randomIdNum}`).innerHTML;
             myLibrary[k].bookAuthor = document.getElementById(`p1-${randomIdNum}`).innerHTML;
             myLibrary[k].bookPages = document.getElementById(`p2-${randomIdNum}`).innerHTML;
-            console.log(myLibrary);
         }
     }
     localStorage.clear();
@@ -217,7 +290,7 @@ if (localStorage.getItem('myLibrary') == null){
 }  
 else if (localStorage.getItem('myLibrary') !== null) {
     for (let i = 0; i < myLibrary.length; i++) {
-        displayBook(myLibrary[i].bookTitle,myLibrary[i].bookAuthor,myLibrary[i].bookPages,myLibrary[i].id,myLibrary)
+        displayBook(myLibrary[i].bookTitle,myLibrary[i].bookAuthor,myLibrary[i].bookPages,myLibrary[i].id,myLibrary[i].status,myLibrary);
     }
 }
 
@@ -237,7 +310,7 @@ function createBook() {
 
     let owl = document.createElement("img");
     owl.setAttribute('src', 'images//own.gif');
-    owl.id = "owl-gif"
+    owl.id = "owl-gif";
     inputs.appendChild(owl);
 
     let displayNone = document.createElement('img');
@@ -264,6 +337,7 @@ function createBook() {
     inputsContetn.appendChild(inputTitleText);
     let inputTitle = document.createElement('input');
     inputTitle.setAttribute('id','input-title');
+    inputTitle.classList.add('inputs-style');
     inputTitle.type = "text";
     inputsContetn.appendChild(inputTitle);
     inputTitle.addEventListener("focus", () => {
@@ -279,6 +353,7 @@ function createBook() {
     inputsContetn.appendChild(inputAuthorText);
     let inputAuthor = document.createElement('input');
     inputAuthor.setAttribute('id','input-author');
+    inputAuthor.classList.add('inputs-style');
     inputAuthor.type = "text";
     inputsContetn.appendChild(inputAuthor);
     inputAuthor.addEventListener("focus", () => {
@@ -293,6 +368,7 @@ function createBook() {
     inputsContetn.appendChild(inputPagesText);
     let inputPages = document.createElement('input');
     inputPages.setAttribute('id','input-pages');
+    inputPages.classList.add('inputs-style');
     inputPages.type = "text";
     inputsContetn.appendChild(inputPages);
     inputPages.addEventListener("focus", () => {
@@ -310,10 +386,10 @@ function createBook() {
     inputsContetn.appendChild(wax)
 
 
-    let addBookButton = document.createElement('button');
-    
+    let addBookButton = document.createElement('input');
+    addBookButton.setAttribute("type", "image");
     addBookButton.setAttribute('src', 'images//wax stamp.png');
-    addBookButton.setAttribute("type", "submit")
+    addBookButton.style.outline = "none";
     addBookButton.classList.add('add-book-button');
     inputs.appendChild(addBookButton);
     addBookButton.addEventListener("click", () => {
