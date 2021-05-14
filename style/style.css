@@ -123,7 +123,7 @@ h1 {
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   font-family: "Delius Swash Caps", cursive;
-  cursor: url(../images/wanddddd.jpg), auto;
+  cursor: url(../images/magicwand.png), auto;
 }
 .description {
   position: absolute;
@@ -141,7 +141,7 @@ h1 {
   margin: 0;
   font-family: "Dancing Script", cursive;
   font-size: 26px;
-  cursor: url(../images/wanddddd.jpg), auto;
+  cursor: url(../images/magicwand.png), auto;
 }
 .author-content p,
 .pages-content p {
@@ -163,7 +163,7 @@ h1 {
   font-family: "Great Vibes", cursive;
   font-family: "Homemade Apple", cursive;
   color: rgba(202, 195, 132, 0.466);
-  cursor: url(../images/wanddddd.jpg), auto;
+  cursor: url(../images/magicwand.png), auto;
   position: relative;
 }
 .cover-settings {
@@ -184,7 +184,7 @@ h1 {
   font-family: "Great Vibes", cursive;
   font-family: "Homemade Apple", cursive;
   color: rgb(3, 3, 3);
-  cursor: url(../images/wanddddd.jpg), auto;
+  cursor: url(../images/magicwand.png), auto;
 }
 .hat-style {
   position: absolute;
