@@ -1,12 +1,15 @@
 ![](https://img.shields.io/badge/myapp-blueviolet)
 
-# PaperRockScissors
+# Library
 
-> Javascript-based game, played between you and the computer.
-> It has only two possible outcomes: a draw, or a win for the one and a loss for the other.
-> Have fun & good luck!
+> The project gives you opportunity to creat your own library, by adding books with their characteristics.
+> Each book has option to be: 
+  - edit
+  - update
+  - delete
+  - marked as read/not read
 
-![screenshot](/home/polina/Documents/TheOdinProject/Library/video/demoVideo.mp4)
+![screenshot](video/demoVideo.mp4)
 
 ## Built With
 
@@ -18,7 +21,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Live Demo
 
-[Live Demo Link](https://polinastamenova.github.io/Game-rock-paper-scissors/)
+[Live Demo Link](https://polinastamenova.github.io/Library/)
 
 ## Instructions
 
@@ -29,7 +32,7 @@ $ cd <folder>
 ```
 
 ```
-$ git clone https://polinastamenova.github.io/Game-rock-paper-scissors/
+$ git clone https://polinastamenova.github.io/Library/
 ```
 
 ### Install
@@ -52,7 +55,7 @@ $ git clone https://polinastamenova.github.io/Game-rock-paper-scissors/
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/PolinaStamenova/Game-rock-paper-scissors/issues).
+Feel free to check the [issues page](https://polinastamenova.github.io/Library/issues).
 
 ## Show your support
 
