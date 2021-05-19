@@ -55,7 +55,7 @@ $ git clone https://polinastamenova.github.io/Library/
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://polinastamenova.github.io/Library/issues).
+Feel free to check the [issues page]https://github.com/PolinaStamenova/Library/issues).
 
 ## Show your support
 
