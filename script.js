@@ -6,7 +6,7 @@ let body = document.getElementById('books');
 let myLibrary = [];
 let status = false
 //------ Create elements in HTML -----
-
+let array = []
 
 
 function Book(bookTitle, bookAuthor, bookPages, randomIdNum, status=false){
@@ -33,7 +33,9 @@ function addBookToLibrary(){
     else {
       myLibrary.push(new Book(bookTitle, bookAuthor, bookPages, randomIdNum, status))
     displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary);
-    
+    document.getElementById('input-title').value = ""
+     document.getElementById('input-author').value = ""
+    document.getElementById('input-pages').value = ""
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
     }
     
@@ -300,7 +302,7 @@ function createBook() {
     document.getElementById('cover-ink').style.display = "block";
 
     document.getElementById('cover').style.display = 'block';
-    let inputs = document.createElement('form');
+    let inputs = document.createElement('div');
     inputs.classList.add('inputs');
     inputs.classList.add('fade-in');
     inputs.setAttribute("action", "/");
@@ -394,17 +396,16 @@ function createBook() {
     inputs.appendChild(addBookButton);
     addBookButton.addEventListener("click", () => {
         
-        inputs.addEventListener('submit', (e) => {
             if (inputTitle.value === '' || inputTitle.value == null ||
                 inputAuthor.value === '' || inputAuthor.value == null ||
                 inputPages.value === '' || inputPages.value == null){
-                e.preventDefault();
+                // e.preventDefault();
                 inputTitle.placeholder = "Title is requared!";
                 inputAuthor.placeholder = "Authoris requared!";
                 inputPages.placeholder = "Pages are requared!";
             }
             else {
-                e.preventDefault();
+                // e.preventDefault();
                 inputs.classList.add('fade-out');  
                 setTimeout(function(){
                 document.getElementById('cover-ink').style.display = "none";
@@ -414,7 +415,6 @@ function createBook() {
                 setTimeout(addBookToLibrary, 1000)
                
             }   
-        })
     });
     
     wax.appendChild(addBookButton);
