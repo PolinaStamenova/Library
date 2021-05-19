@@ -4,10 +4,7 @@ window.onload=function(){
 
 let body = document.getElementById('books');
 let myLibrary = [];
-let status = false
-//------ Create elements in HTML -----
-let array = []
-
+let status = false;
 
 function Book(bookTitle, bookAuthor, bookPages, randomIdNum, status=false){
    
@@ -41,7 +38,7 @@ function addBookToLibrary(){
     
 }
 
-//The function generate a random number, used for id-name
+//Generate a random number, used for same id-name of each element property in the Book
 function randomId() {
     return '_' + (
     Number(String(Math.random()).slice(2)) + 
@@ -76,11 +73,9 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary
     authorContent.classList.add('author-content')
     description.appendChild(authorContent);
     let authorText = document.createElement('p');
-    // authorText.classList.add('author-style')
     authorText.textContent = 'Author: '
     authorContent.appendChild(authorText);
     let author = document.createElement('p');
-    // author.classList.add('author-style')
     author.setAttribute('id', `p1-${randomIdNum}`);
     author.textContent = bookAuthor;
     authorContent.appendChild(author);
@@ -121,7 +116,7 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary
         updateBook(updateButton,randomIdNum,title,author,pages)
     })
     settings.appendChild(updateButton);
-//TOGGleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+
     let readButton = document.createElement("p");
     readButton.textContent = 'Not read';
     readButton.classList.add("notRead");
@@ -142,8 +137,7 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary
         card.style.opacity = '0.5';
     } 
     card.appendChild(hatOne);
-    
-    
+     
     function checkPressed() { 
         if (status == false){
             status = true;
@@ -152,10 +146,10 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary
             for (let k=0; k < myLibrary.length; k++){
                 if (`status-${myLibrary[k].id}` == readButton.id){
                     myLibrary[k].status = status
-                    console.log(myLibrary[k]);
                     localStorage.clear();
                     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-                }}  
+                }
+            }  
         }
         else {
             readButton.textContent = 'Not read';
@@ -166,21 +160,15 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary
                     myLibrary[n].status = status
                     localStorage.clear();
                     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-                    console.log(myLibrary[n]);
-                }}  
+                }   
+            }  
         }
-        // localStorage.clear();
-        // localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-        
-        
     }
     readButton.addEventListener('click', () => {
         checkPressed();
         hatOne.classList.toggle("hat-show")
-        
     })
     
-
     let deleteButton = document.createElement('p');
     deleteButton.classList.add('delete-button');
     deleteButton.setAttribute('id', `delete-${randomIdNum}`);
@@ -189,9 +177,6 @@ function displayBook(bookTitle,bookAuthor,bookPages,randomIdNum,status,myLibrary
         deleteBook(deleteButton,card,body,myLibrary,cardContent,hatOne,readButton)
     })
     settings.appendChild(deleteButton);
-
-    
-
 }
 
 function deleteBook(deleteButton,card,body,myLibrary,cardContent,hatOne,readButton){
@@ -221,7 +206,6 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent,hatOne,readButt
         card.appendChild(smoke);  
     }
     
-
     timerDelete();
     function timerDelete() {
         setTimeout(deteleItem, 7000);
@@ -241,7 +225,6 @@ function deleteBook(deleteButton,card,body,myLibrary,cardContent,hatOne,readButt
     }
 }
 function editBook(randomIdNum,editButton,updateButton){
-    
     
     editButton.style.color = 'white';
     editButton.style.textShadow = '1px 1px 7px gold';
@@ -296,7 +279,6 @@ else if (localStorage.getItem('myLibrary') !== null) {
     }
 }
 
-
 function createBook() {
 
     document.getElementById('cover-ink').style.display = "block";
@@ -309,7 +291,6 @@ function createBook() {
     inputs.setAttribute("method", "GET");
     document.body.appendChild(inputs);
     
-
     let owl = document.createElement("img");
     owl.setAttribute('src', 'images//own.gif');
     owl.id = "owl-gif";
@@ -349,7 +330,6 @@ function createBook() {
         onFocusOut(inputTitleText);
     })
 
-
     let inputAuthorText = document.createElement('p');
     inputAuthorText.textContent = "Author :"
     inputsContetn.appendChild(inputAuthorText);
@@ -387,7 +367,6 @@ function createBook() {
     wax.classList.add('wax');
     inputsContetn.appendChild(wax)
 
-
     let addBookButton = document.createElement('input');
     addBookButton.setAttribute("type", "image");
     addBookButton.setAttribute('src', 'images//wax stamp.png');
@@ -396,25 +375,22 @@ function createBook() {
     inputs.appendChild(addBookButton);
     addBookButton.addEventListener("click", () => {
         
-            if (inputTitle.value === '' || inputTitle.value == null ||
-                inputAuthor.value === '' || inputAuthor.value == null ||
-                inputPages.value === '' || inputPages.value == null){
-                // e.preventDefault();
-                inputTitle.placeholder = "Title is requared!";
-                inputAuthor.placeholder = "Authoris requared!";
-                inputPages.placeholder = "Pages are requared!";
-            }
-            else {
-                // e.preventDefault();
-                inputs.classList.add('fade-out');  
-                setTimeout(function(){
-                document.getElementById('cover-ink').style.display = "none";
-                document.getElementById('cover').style.display = 'none';
-                inputs.remove(); 
-                }, 3000);
-                setTimeout(addBookToLibrary, 1000)
-               
-            }   
+        if (inputTitle.value === '' || inputTitle.value == null ||
+            inputAuthor.value === '' || inputAuthor.value == null ||
+            inputPages.value === '' || inputPages.value == null){
+            inputTitle.placeholder = "Title is requared!";
+            inputAuthor.placeholder = "Authoris requared!";
+            inputPages.placeholder = "Pages are requared!";
+        }
+        else {
+            inputs.classList.add('fade-out');  
+            setTimeout(function(){
+            document.getElementById('cover-ink').style.display = "none";
+            document.getElementById('cover').style.display = 'none';
+            inputs.remove(); 
+            }, 3000);
+            setTimeout(addBookToLibrary, 1000)
+        }   
     });
     
     wax.appendChild(addBookButton);
