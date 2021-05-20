@@ -9,7 +9,7 @@
   - delete
   - marked as read/not read
 
-![screenshot](video/demoVideo.mp4)
+[![Library](https://cdn.loom.com/sessions/thumbnails/68ce62964117491d9e5ad3f83d7507f3-with-play.gif)](https://www.loom.com/share/68ce62964117491d9e5ad3f83d7507f3 "Library")
 
 ## Built With
 
